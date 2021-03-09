@@ -20,7 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:fix": "./node_modules/eslint/bin/eslint.js src --ext .js --ext .jsx --cache --fix"
   },
   "eslintConfig": {
     "extends": [
