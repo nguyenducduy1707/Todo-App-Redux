@@ -1,50 +1,57 @@
-const initialState = [];
+const initialState = {
+  tasks: {},
+};
 
-function nextTodoid(todos) {
-  const maxIdTodos = todos.reduce((maxId, todo) => Math.max(todo.id, maxId), -1);
-  return maxIdTodos + 1;
+function nextTaskId(tasks) {
+  return Object.values(tasks).length + 1;
 }
 
 export default function todoReducer(state = initialState, action) {
   switch (action.type) {
     case 'ADD_TODO': {
-      return [
+      const id = nextTaskId(state.tasks);
+      return {
         ...state,
-        {
-          id: nextTodoid(state),
-          text: action.payload,
-          status: 'Not done yet',
-          description: ' ',
+        tasks: {
+          ...state.tasks,
+          [id]: {
+            id,
+            text: action.payload,
+            status: 'Not done yet',
+            description: '',
+          },
         },
-      ];
+      };
     }
     case 'ADD_DESCRIPTION': {
       const { todoId, description } = action.payload;
-      return state.map((todo) => {
-        if (todo.id !== todoId) {
-          return todo;
-        }
-        return {
-          ...todo,
-          description,
-        };
-      });
+      return {
+        ...state,
+        tasks: {
+          ...state.tasks,
+          [todoId]: {
+            ...state.tasks[todoId] ?? {},
+            description: description ?? '',
+          },
+        },
+      };
     }
     case 'CHANGE_STATUS': {
-      const { todoId, status } = action.payload;
-      return state.map((todo) => {
-        if (todo.id !== todoId) {
-          return todo;
-        }
-        return {
-          ...todo,
-          status,
-        };
-      });
+      const { status, todoId } = action.payload;
+      return {
+        ...state,
+        tasks: {
+          ...state.tasks,
+          [todoId]: {
+            ...state.tasks[todoId] ?? {},
+            status,
+          },
+        },
+      };
     }
-    case 'DELETE_TODO': {
-      return state.filter((todo) => todo.id !== action.payload);
-    }
+    // case 'DELETE_TODO': {
+    //   return state.filter((todo) => todo.id !== action.payload);
+    // }
     default:
       return state;
   }
