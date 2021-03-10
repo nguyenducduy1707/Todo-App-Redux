@@ -49,9 +49,12 @@ export default function todoReducer(state = initialState, action) {
         },
       };
     }
-    // case 'DELETE_TODO': {
-    //   return state.filter((todo) => todo.id !== action.payload);
-    // }
+    case 'DELETE_TODO': {
+      const { [action.payload]: taskWillBeDelete, ...tasks } = state.tasks;
+      return {
+        tasks,
+      };
+    }
     default:
       return state;
   }
