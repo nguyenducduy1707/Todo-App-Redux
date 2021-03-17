@@ -3,7 +3,7 @@ const initialState = {
 };
 
 function nextTaskId(tasks) {
-  return Object.values(tasks).length + 1;
+  return `task_${Object.values(tasks).length}`;
 }
 
 export default function todoReducer(state = initialState, action) {
@@ -52,7 +52,10 @@ export default function todoReducer(state = initialState, action) {
     case 'DELETE_TODO': {
       const { [action.payload]: taskWillBeDelete, ...tasks } = state.tasks;
       return {
-        tasks,
+        ...state,
+        tasks: {
+          ...tasks,
+        },
       };
     }
     default:

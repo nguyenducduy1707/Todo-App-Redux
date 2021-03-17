@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
-  ListGroup, InputGroup, FormControl, Button, Form,
+  ListGroup, InputGroup, FormControl, Button, Form, Jumbotron, Container,
 } from 'react-bootstrap';
 import {
   changeStatus, deleteTodo, addDescription,
@@ -50,8 +50,6 @@ function TodoListItem({ id }) {
     </option>
   ));
 
-  // Transfer data onClick
-
   return (
     <ListGroup.Item>
       <div className="view">
@@ -70,7 +68,6 @@ function TodoListItem({ id }) {
                   <span className="mr-2 font-weight-bold">
                     Description :
                   </span>
-                  {description}
                 </InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl
@@ -81,6 +78,15 @@ function TodoListItem({ id }) {
                 onKeyDown={handleEnterAddDes}
               />
             </InputGroup>
+            <div className="description-text">
+              <Jumbotron fluid>
+                <Container>
+                  <p>
+                    {description}
+                  </p>
+                </Container>
+              </Jumbotron>
+            </div>
           </div>
         </div>
         <div className="options">

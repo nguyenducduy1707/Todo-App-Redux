@@ -34,6 +34,7 @@ input:focus {
 
 .App {
   padding: 30px;
+  background-color: tan;
 }
 
 /* Header */
@@ -43,9 +44,24 @@ input:focus {
   font-size: 30px;
   box-sizing: border-box;
 }
+.new-todo {
+  border: none;
+}
 
+/* Each todo */
+.list-group-item {
+  border: none !important;
+  border-top-right-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+  border-top: 1px solid rgba(0,0,0,.2) !important;
+}
 /* Description */
 .form-control:focus {
   box-shadow: none !important;
   border-color: rgb(206, 212, 218) !important;
+}
+
+.description-text p{
+  text-align: center;
+  font-size: 30px;
 }
