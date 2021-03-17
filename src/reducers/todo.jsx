@@ -3,7 +3,11 @@ const initialState = {
 };
 
 function nextTaskId(tasks) {
+<<<<<<< HEAD
   return `task_${Object.values(tasks).length}`;
+=======
+  return Object.values(tasks).length + 1;
+>>>>>>> f084e48f5413f4ab17e8364bd0027647e4b1c1ab
 }
 
 export default function todoReducer(state = initialState, action) {
