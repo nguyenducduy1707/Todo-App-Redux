@@ -6,7 +6,7 @@ import {
   ListGroup, InputGroup, FormControl, Form, Jumbotron, Container,
 } from 'react-bootstrap';
 import { addDescription, changeStatus } from '../../actions';
-import availableStatus from '../../ultil';
+import { STATUSES, getStatusName } from '../../config';
 
 function TodoDetail(props) {
   // eslint-disable-next-line react/prop-types
@@ -38,9 +38,9 @@ function TodoDetail(props) {
     dispatch(changeStatus(todoSelected, statusValue));
   };
 
-  const optionStatus = availableStatus.map((statusOption) => (
-    <option key={statusOption} value={statusOption}>
-      {statusOption}
+  const optionStatus = Object.values(STATUSES).map((statusOption) => (
+    <option key={statusOption} value={getStatusName(statusOption)}>
+      {getStatusName(statusOption)}
     </option>
   ));
 
@@ -56,7 +56,7 @@ function TodoDetail(props) {
               <InputGroup.Prepend>
                 <InputGroup.Text>
                   <span className="mr-2 font-weight-bold">
-                    Description :
+                    Change description :
                   </span>
                 </InputGroup.Text>
               </InputGroup.Prepend>

@@ -1,14 +1,13 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
-  ListGroup, InputGroup, FormControl, Button, Form, Jumbotron, Container,
+  ListGroup, Button,
 } from 'react-bootstrap';
 import {
-  changeStatus, deleteTodo, addDescription,
+  deleteTodo,
 } from '../../actions';
-import availableStatus from '../../ultil';
 
 // eslint-disable-next-line max-len
 const selectTodoById = (state, todoId) => Object.values(state.todos.tasks).find((todo) => todo.id === todoId);
@@ -16,39 +15,12 @@ const selectTodoById = (state, todoId) => Object.values(state.todos.tasks).find(
 function TodoListItem({ id }) {
   const todo = useSelector((state) => selectTodoById(state, id));
 
-  const { text, status, description } = todo;
-  const [descriptionText, setDescriptionText] = useState('');
+  const { text, description } = todo;
   const dispatch = useDispatch();
 
-  // Add description
-  const handleDescriptionChange = (e) => {
-    setDescriptionText(e.target.value);
-  };
-
-  const handleEnterAddDes = (e) => {
-    const trimedText = descriptionText.trim();
-    if (e.which === 13 && trimedText) {
-      dispatch(addDescription(todo, description, trimedText));
-      setDescriptionText('');
-    }
-  };
-
-  // Delete description
   const handleDeleteTodo = () => {
     dispatch(deleteTodo(todo));
   };
-
-  // Change status
-  const handleStatusChange = (e) => {
-    const statusValue = e.target.value;
-    dispatch(changeStatus(todo, statusValue));
-  };
-
-  const optionStatus = availableStatus.map((statusOption) => (
-    <option key={statusOption} value={statusOption}>
-      {statusOption}
-    </option>
-  ));
 
   return (
     <ListGroup.Item>
@@ -61,51 +33,12 @@ function TodoListItem({ id }) {
               {text}
             </Link>
           </h1>
-          <div className="description">
-            <InputGroup className="mb-3">
-              <InputGroup.Prepend>
-                <InputGroup.Text>
-                  <span className="mr-2 font-weight-bold">
-                    Description :
-                  </span>
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                value={descriptionText}
-                onChange={handleDescriptionChange}
-                onKeyDown={handleEnterAddDes}
-              />
-            </InputGroup>
-            <div className="description-text">
-              <Jumbotron fluid>
-                <Container>
-                  <p>
-                    {description}
-                  </p>
-                </Container>
-              </Jumbotron>
-            </div>
-          </div>
-        </div>
-        <div className="options">
-          <Form.Group controlId="exampleForm.SelectCustomSizeLg">
-            <Form.Label><b>Status:</b></Form.Label>
-            <Form.Control
-              as="select"
-              className="status-picker"
-              value={status}
-              onChange={handleStatusChange}
-              size="lg"
-              custom
-            >
-              {optionStatus}
-            </Form.Control>
-          </Form.Group>
-          <Button variant="danger" className="destroy" onClick={handleDeleteTodo}>
-            Delete Item
-          </Button>
+          <p>
+            Description:
+            {' '}
+            {description}
+          </p>
+          <Button onClick={handleDeleteTodo} variant="danger">Delete Item</Button>
         </div>
       </div>
     </ListGroup.Item>
