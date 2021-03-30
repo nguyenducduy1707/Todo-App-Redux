@@ -65,3 +65,11 @@ input:focus {
   text-align: center;
   font-size: 30px;
 }
+
+.button-add {
+  margin-bottom: 10px;
+}
+
+.button-delete {
+  float: right;
+}

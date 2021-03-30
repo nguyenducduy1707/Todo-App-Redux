@@ -20,7 +20,7 @@ function TodoList() {
   const handleAddTask = () => {
     const trimedTextTitle = textTitle.trim();
     const trimedTextDescription = textDescription.trim();
-    if (trimedTextTitle && trimedTextDescription) {
+    if (trimedTextTitle !== '') {
       dispatch(addTodo(trimedTextTitle, trimedTextDescription));
       setTextTitle('');
       setTextDescription('');
@@ -41,7 +41,7 @@ function TodoList() {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add new task</Modal.Title>
+          <Modal.Title className="button-add">Add new task</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="input-header">

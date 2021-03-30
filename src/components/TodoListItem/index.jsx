@@ -13,13 +13,13 @@ import {
 const selectTodoById = (state, todoId) => Object.values(state.todos.tasks).find((todo) => todo.id === todoId);
 
 function TodoListItem({ id }) {
-  const todo = useSelector((state) => selectTodoById(state, id));
+  const task = useSelector((state) => selectTodoById(state, id));
 
-  const { text, description } = todo;
+  const { text, description } = task;
   const dispatch = useDispatch();
 
   const handleDeleteTodo = () => {
-    dispatch(deleteTodo(todo));
+    dispatch(deleteTodo(task));
   };
 
   return (
@@ -38,7 +38,7 @@ function TodoListItem({ id }) {
             {' '}
             {description}
           </p>
-          <Button onClick={handleDeleteTodo} variant="danger">Delete Item</Button>
+          <Button className="button-delete" onClick={handleDeleteTodo} variant="danger">Delete Item</Button>
         </div>
       </div>
     </ListGroup.Item>

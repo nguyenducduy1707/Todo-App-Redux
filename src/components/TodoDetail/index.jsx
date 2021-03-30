@@ -7,34 +7,34 @@ import {
 } from 'react-bootstrap';
 import { addDescription, changeStatus } from '../../actions';
 import { STATUSES, getStatusName } from '../../config';
+import detailTaskSelector from '../../selectors';
 
 function TodoDetail(props) {
   // eslint-disable-next-line react/prop-types
   const { id } = props.match.params;
 
-  const detailTaskSelector = (state) => state?.todos?.tasks[id || ''] ?? {};
-
-  const todoSelected = useSelector(detailTaskSelector);
+  const todoSelected = useSelector(detailTaskSelector(id));
   const { text, status, description } = todoSelected;
   const [descriptionText, setDescriptionText] = useState('');
   const dispatch = useDispatch();
 
   // Add description
-  const handleDescriptionChange = (e) => {
-    setDescriptionText(e.target.value);
+  const handleDescriptionChange = (event) => {
+    setDescriptionText(event.target.value);
   };
 
-  const handleEnterAddDes = (e) => {
+  // Event.which is just a property which support catch action press key "Enter"
+  const handleEnterAddDes = (event) => {
     const trimedText = descriptionText.trim();
-    if (e.which === 13 && trimedText) {
+    if (event.which === 13 && trimedText) {
       dispatch(addDescription(todoSelected, description, trimedText));
       setDescriptionText('');
     }
   };
 
   // Change status
-  const handleStatusChange = (e) => {
-    const statusValue = e.target.value;
+  const handleStatusChange = (event) => {
+    const statusValue = event.target.value;
     dispatch(changeStatus(todoSelected, statusValue));
   };
 
