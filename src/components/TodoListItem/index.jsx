@@ -28,7 +28,7 @@ function TodoListItem({ id }) {
         <div className="label">
           <h1 className="todo-text">
             <Link
-              to={`/${id}`}
+              to={`/tasks/${id}`}
             >
               {text}
             </Link>

@@ -9,7 +9,7 @@ function Routes() {
       <Router>
         <Switch>
           <Route exact path="/" component={TodoList} />
-          <Route path="/:id" component={TodoDetail} />
+          <Route path="/tasks/:id" component={TodoDetail} />
         </Switch>
       </Router>
     </>
