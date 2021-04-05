@@ -1,3 +1,3 @@
-const detailTaskSelector = (state) => (taskId) => state?.todos?.tasks[taskId || ''] ?? {};
+const detailTaskSelector = (taskId) => (state) => state?.todos?.tasks[taskId || ''] ?? {};
 
 export default detailTaskSelector;

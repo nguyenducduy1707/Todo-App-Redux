@@ -35,7 +35,7 @@ function TodoList() {
     <div>
       <Button variant="success" size="lg" className="button-add" onClick={handleShow}>Add new task</Button>
       <Modal
-        isShow={isShow}
+        show={isShow}
         onHide={handleClose}
         backdrop="static"
         keyboard={false}

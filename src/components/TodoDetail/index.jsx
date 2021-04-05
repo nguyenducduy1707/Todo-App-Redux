@@ -3,7 +3,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  ListGroup, InputGroup, FormControl, Form, Jumbotron, Container,
+  ListGroup,
+  InputGroup,
+  FormControl,
+  Form,
+  Jumbotron,
+  Container,
 } from 'react-bootstrap';
 import { addDescription, changeStatus } from '../../actions';
 import { STATUSES, getStatusName } from '../../config';
@@ -23,10 +28,9 @@ function TodoDetail(props) {
     setDescriptionText(event.target.value);
   };
 
-  // Event.which is just a property which support catch action press key "Enter"
   const handleEnterAddDes = (event) => {
     const trimedText = descriptionText.trim();
-    if (event.which === 13 && trimedText) {
+    if (event.code === 'Enter' && trimedText) {
       dispatch(addDescription(todoSelected, description, trimedText));
       setDescriptionText('');
     }
@@ -48,9 +52,7 @@ function TodoDetail(props) {
     <ListGroup.Item>
       <div className="view">
         <div className="label">
-          <h1 className="todo-text">
-            {text}
-          </h1>
+          <h1 className="todo-text">{text}</h1>
           <div className="description">
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
@@ -71,9 +73,7 @@ function TodoDetail(props) {
             <div className="description-text">
               <Jumbotron fluid>
                 <Container>
-                  <p>
-                    {description}
-                  </p>
+                  <p>{description}</p>
                 </Container>
               </Jumbotron>
             </div>
@@ -81,7 +81,9 @@ function TodoDetail(props) {
         </div>
         <div className="options">
           <Form.Group controlId="exampleForm.SelectCustomSizeLg">
-            <Form.Label><b>Status:</b></Form.Label>
+            <Form.Label>
+              <b>Status:</b>
+            </Form.Label>
             <Form.Control
               as="select"
               className="status-picker"
