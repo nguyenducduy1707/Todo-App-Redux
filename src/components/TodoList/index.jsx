@@ -7,7 +7,7 @@ import { addTodo } from '../../actions';
 const selectTodoIds = (state) => Object.values(state.todos.tasks).map((todo) => todo);
 
 function TodoList() {
-  const [show, setShow] = useState(false);
+  const [isShow, setIsShow] = useState(false);
   const [textTitle, setTextTitle] = useState('');
   const [textDescription, setTextDescription] = useState('');
 
@@ -25,17 +25,17 @@ function TodoList() {
       setTextTitle('');
       setTextDescription('');
     }
-    setShow(false);
+    setIsShow(false);
   };
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setIsShow(false);
+  const handleShow = () => setIsShow(true);
 
   return (
     <div>
       <Button variant="success" size="lg" className="button-add" onClick={handleShow}>Add new task</Button>
       <Modal
-        show={show}
+        isShow={isShow}
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
