@@ -1,24 +1,28 @@
+import { getStatusName, STATUSES } from '../config';
+
+/* eslint-disable object-shorthand */
 const initialState = {
   tasks: {},
 };
 
 function nextTaskId(tasks) {
-  return Object.values(tasks).length + 1;
+  return Object.values(tasks).length;
 }
 
 export default function todoReducer(state = initialState, action) {
   switch (action.type) {
     case 'ADD_TODO': {
       const id = nextTaskId(state.tasks);
+      const { title, description } = action.payload;
       return {
         ...state,
         tasks: {
           ...state.tasks,
           [id]: {
             id,
-            text: action.payload,
-            status: 'Not done yet',
-            description: '',
+            text: title,
+            description: description,
+            status: getStatusName(STATUSES.CREATED),
           },
         },
       };
@@ -49,9 +53,15 @@ export default function todoReducer(state = initialState, action) {
         },
       };
     }
-    // case 'DELETE_TODO': {
-    //   return state.filter((todo) => todo.id !== action.payload);
-    // }
+    case 'DELETE_TODO': {
+      const { [action.payload.id]: taskWillBeDelete, ...tasks } = state.tasks;
+      return {
+        ...state,
+        tasks: {
+          ...tasks,
+        },
+      };
+    }
     default:
       return state;
   }

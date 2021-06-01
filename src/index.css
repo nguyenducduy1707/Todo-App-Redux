@@ -11,3 +11,65 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root {
+  height: 100%;
+  margin: auto;
+  margin: 50px;
+  box-shadow: 0 0 20px 0 rgb(51 51 51 / 12%);
+}
+
+a {
+  color: goldenrod !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+input:focus {
+  outline: none !important;
+}
+
+.App {
+  padding: 30px;
+  background-color: tan;
+}
+
+/* Header */
+.input-header input {
+  width: 100%;
+  padding: 30px;
+  font-size: 30px;
+  box-sizing: border-box;
+}
+.new-todo {
+  border: none;
+}
+
+/* Each todo */
+.list-group-item {
+  border: none !important;
+  border-top-right-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+  border-top: 1px solid rgba(0,0,0,.2) !important;
+}
+/* Description */
+.form-control:focus {
+  box-shadow: none !important;
+  border-color: rgb(206, 212, 218) !important;
+}
+
+.description-text p{
+  text-align: center;
+  font-size: 30px;
+}
+
+.button-add {
+  margin-bottom: 10px;
+}
+
+.button-delete {
+  float: right;
+}

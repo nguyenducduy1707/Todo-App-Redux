@@ -1,7 +1,7 @@
-export function addTodo(text) {
+export function addTodo(textTitle, textDescription) {
   return {
     type: 'ADD_TODO',
-    payload: text,
+    payload: { title: textTitle, description: textDescription },
   };
 }
 
@@ -22,6 +22,6 @@ export function changeStatus(todo, status) {
 export function deleteTodo(todo) {
   return {
     type: 'DELETE_TODO',
-    payload: todo.id,
+    payload: { id: todo.id },
   };
 }
