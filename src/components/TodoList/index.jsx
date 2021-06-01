@@ -4,7 +4,7 @@ import { ListGroup, Button, Modal } from 'react-bootstrap';
 import TodoListItem from '../TodoListItem';
 import { addTodo } from '../../actions';
 
-const selectTodoIds = (state) => Object.values(state.todos.tasks).map((todo) => todo);
+const selectTodoIds = (state) => Object.values(state.todos.tasks);
 
 function TodoList() {
   const [isShow, setIsShow] = useState(false);
@@ -33,7 +33,14 @@ function TodoList() {
 
   return (
     <div>
-      <Button variant="success" size="lg" className="button-add" onClick={handleShow}>Add new task</Button>
+      <Button
+        variant="success"
+        size="lg"
+        className="button-add"
+        onClick={handleShow}
+      >
+        Add new task
+      </Button>
       <Modal
         show={isShow}
         onHide={handleClose}
@@ -64,7 +71,9 @@ function TodoList() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleAddTask}>Complete</Button>
+          <Button variant="primary" onClick={handleAddTask}>
+            Complete
+          </Button>
         </Modal.Footer>
       </Modal>
 
